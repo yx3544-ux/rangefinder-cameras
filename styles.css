@@ -1,0 +1,213 @@
+/* character encoding (optional) */
+@charset 'utf-8';
+
+/* general settings */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* vendor-prefixed style to prevent font scaling on iOS in landscape */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* CSS variable */
+
+:root { /* accesible to all rule sets */
+  --accent-color: rgb(245, 26, 63); /* red */
+}
+
+/* text */
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('fonts/Raleway-VF.woff2'), url('fonts/Raleway-VF.woff');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+body {
+  font-family: Raleway, sans-serif;
+}
+
+h1, h1 a, h2 {
+  font-weight: 400;
+}
+
+p, a {
+  font-weight: 300;
+}
+
+h1, h2, nav {
+  font-size: 1.5em;
+  line-height: 1.7em;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin-top: 0.5em;
+}
+
+a:link, a:visited {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-color);
+}
+
+a:hover {
+  filter: blur(1.6px);
+}
+
+a:active {
+  opacity: 0.5;
+}
+
+h1 a:link, h1 a:visited {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+nav a:link, nav a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+/* header and navigation */
+
+header {
+  background-color: hsl(0, 0%, 10%); /* dark gray */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 2.5em;
+  /* always display header at the top of the browser */
+  position: fixed;
+  top: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  visibility: collapse; /* don't display nav items initially */
+}
+
+svg.menu {
+  stroke: white;
+  width: 2.5em;
+  height: 2.5em;
+  position: absolute; /* relative to fixed-position header */
+  top: 1em;
+  right: 2.5em;
+}
+
+svg.menu:hover {
+  cursor: pointer;
+  stroke: var(--accent-color);
+}
+
+svg.menu:active {
+  opacity: 0.5;
+}
+
+/* class styles to be applied with JS */
+nav.expand {
+  visibility: visible;
+}
+
+header.expand {
+  height: 10em;
+}
+
+/* layout */
+
+header, article {
+  padding: 1em;
+}
+
+main {
+  /* preserve space occupied by the header */
+  margin-top: 4.5em;
+}
+
+article {
+  /* account for header space when scrolling to another section */
+  scroll-margin-top: 4.5em;
+}
+
+figure {
+  max-height: 35vh; /* percentage of viewport height */
+  overflow: hidden;
+  display: flex; /* in this case, for alignment */
+  align-items: center; /* center child element (banner image) vertically */
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+}
+
+#camera-icon {
+  width: 4em;
+  fill: var(--accent-color);
+}
+
+/* media queries */
+
+@media (min-width: 45em) {
+
+  header {
+    flex-direction: row;
+    gap: 1em;
+  }
+
+  nav {
+    flex-direction: row;
+    gap: 1em;
+    visibility: visible;
+  }
+
+  /* just in case browser window is widened with this class still applied */
+  header.expand {
+    height: 2.5em;
+  }
+
+  svg.menu {
+    display: none;
+  }
+
+}
+
+@media (min-width: 70em) {
+
+  article {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  article h2 {
+    width: 20%;
+  }
+
+  article p {
+    width: 38%;
+  }
+
+}
+
+@media (min-width: 120em) {
+
+  p {
+    font-size: 1.5em;
+  }
+
+}
