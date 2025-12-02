@@ -87,12 +87,15 @@ header {
   /* always display header at the top of the browser */
   position: fixed;
   top: 0;
+  transition: height 400ms;
 }
 
 nav {
   display: flex;
   flex-direction: column;
   visibility: collapse; /* don't display nav items initially */
+  opacity: 0;
+  transition: opacity 800ms;
 }
 
 svg.menu {
@@ -116,6 +119,7 @@ svg.menu:active {
 /* class styles to be applied with JS */
 nav.expand {
   visibility: visible;
+  opacity: 1;
 }
 
 header.expand {
@@ -174,6 +178,7 @@ footer {
     flex-direction: row;
     gap: 1em;
     visibility: visible;
+    opacity: 1;
   }
 
   /* just in case browser window is widened with this class still applied */
